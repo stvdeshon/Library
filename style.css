@@ -8,7 +8,11 @@
 
 *:focus {
       outline: none;
-     }
+}
+
+input[type=text], input[type=number] {
+    border-radius: 5px;
+}
 
 
 html, body {
@@ -34,22 +38,7 @@ header {
 
 /* buttons */
 
-#new {
-    padding: 6px 10px;
-    border-radius: 5px;
-}
-
-.remove {
-    padding: 6px 10px;
-    border-radius: 5px;
-}
-
-.open {
-    padding: 6px 10px;
-    border-radius: 5px;
-}
-
-.close {
+#new, #submit, .remove, .open, .close {
     padding: 6px 10px;
     border-radius: 5px;
 }
@@ -72,6 +61,12 @@ header {
 #form-container.show {
     pointer-events: auto;
     opacity: 1;
+}
+
+#form-modal > div {
+    display: flex;
+    justify-content: end;
+    gap: 40%;
 }
 
 #book-container {
@@ -100,16 +95,24 @@ header {
     border-radius: 5px;
 }
 
+.book-modal > div {
+    display: flex;
+    justify-content: end;
+    gap: 15px;
+}
+
 #form-modal {
     background-color: white;
     width: 600px;
     max-width: 100%;
     padding: 20px 40px;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
 }
 
 
-/* Main */
+/* Library */
 
 #library {
     border: 1px solid black;

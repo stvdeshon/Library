@@ -15,10 +15,32 @@
     </header>
     <main>
         <div id="form-container">
-            <div id="form-modal">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos numquam magnam ducimus 
-                quibusdam porro sed architecto? Possimus est tempora rem nobis officia vel libero labore illum nisi? 
-                Consequatur, eius tempore.
-                <button class="close">close</button>
+            <div id="form-modal">
+                <label>
+                    <p>Title:</p>
+                    <input type="text" name="title" id="title">
+                </label>
+                <br>
+                <label>
+                    <p>Author:</p>
+                    <input type="text" name="author" id="author">
+                </label>
+                <br>
+                <label>
+                    <p># of Pages:</p>
+                    <input type="number" name="pages" id="pages">
+                </label>
+                <br>
+                <label>
+                    <p>Have you finished the book?</p>
+                    <input type="radio" name="read" class="read" checked>Yes</input>
+                    <input type="radio" name="read" class="read">No</input>
+                </label>
+                <br>
+                <div>
+                    <button id="submit">Submit</button>
+                    <button class="close">close</button>
+                </div>
             </div>
         </div>
         <div id="library">
@@ -28,9 +50,16 @@
         </div>
         <div id="book-container">
             <div class="book-modal">
-                textcontent will be changed here via the JS script
+                <p id="book-title">Title</p>
+                <br>
+                <p id="book-author">Author</p>
+                <br>
+                <p id="bookpages">Page Count</p>
+                <br>
+                <div>
                 <button class="remove">Remove From Library</button>
                 <button class="close">Close</button>
+                </div>
             </div>
         </div>
     </main>

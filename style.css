@@ -38,7 +38,7 @@ header {
 
 /* buttons */
 
-#new, #submit, .remove, .open, .close {
+#new, #submit, #remove, .open, .close {
     padding: 6px 10px;
     border-radius: 5px;
 }
@@ -63,10 +63,15 @@ header {
     opacity: 1;
 }
 
-#form-modal > div {
+#closer {
     display: flex;
     justify-content: end;
     gap: 40%;
+}
+
+#finished {
+    display: flex;
+    justify-content: start;
 }
 
 #book-container {
@@ -98,7 +103,7 @@ header {
 .book-modal > div {
     display: flex;
     justify-content: end;
-    gap: 15px;
+    gap: 30%;
 }
 
 #form-modal {

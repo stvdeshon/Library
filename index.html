@@ -31,13 +31,17 @@
                     <input type="number" name="pages" id="pages">
                 </label>
                 <br>
-                <label>
                     <p>Have you finished the book?</p>
-                    <input type="radio" name="read" class="read" checked>Yes</input>
-                    <input type="radio" name="read" class="read">No</input>
-                </label>
+                <div id="finished">
+                    <label>
+                        <input type="radio" name="read" class="read" value="Yes">Yes</input>
+                    </label>
+                    <label>
+                        <input type="radio" name="read" class="read" value="No">No</input>
+                    </label>
+                </div>
                 <br>
-                <div>
+                <div id="closer">
                     <button id="submit">Submit</button>
                     <button class="close">close</button>
                 </div>
@@ -56,8 +60,9 @@
                 <br>
                 <p id="bookpages">Page Count</p>
                 <br>
+                <div id="result"></div>
                 <div>
-                <button class="remove">Remove From Library</button>
+                <button id="remove">Remove From Library</button>
                 <button class="close">Close</button>
                 </div>
             </div>

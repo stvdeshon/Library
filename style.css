@@ -38,7 +38,7 @@ header {
 
 /* buttons */
 
-#new, #submit, #remove, .open, .close {
+#new, #submit, #remove, .books, .close {
     padding: 6px 10px;
     border-radius: 5px;
 }
@@ -118,7 +118,15 @@ header {
 
 
 /* Library */
+main {
+    height: 100%;
+    width: 100%;
+}
 
 #library {
     border: 1px solid black;
+    height: max(500px, 50%);
+    display: flex;
+    justify-content: start;
+    gap: 1px;
 }

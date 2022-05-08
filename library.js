@@ -17,8 +17,6 @@ const bookContainer = document.querySelector("#book-container");
 //modals
 const formModal = document.querySelector("#form-modal");
 const bookModal = document.querySelector("#book-modal");
-//opens each book
-const opened = document.querySelectorAll('.open');
 
 //modal toggles
 addBook.addEventListener('click', () => {
@@ -54,13 +52,8 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-//may have to add more styling and functionality later
-function createButton(index) {
-    let btn = document.createElement('button');
-    btn.classList.add('books');
-    btn.textContent = index;
-    return btn;
-}
+let bookName;
+
 
 //submits user info to constructBook function
 submit.addEventListener('click', () => {
@@ -75,6 +68,14 @@ submit.addEventListener('click', () => {
         radioVal = read[i].value;
     }
 
+    function createButton(index) {
+        let btn = document.createElement('button');
+        btn.classList.add('books');
+        btn.setAttribute('id', title);
+        btn.textContent = index;
+        return btn;
+    }
+
     
     constructBook(title, author, pages, radioVal);
     document.getElementById('title').value = '';
@@ -83,7 +84,9 @@ submit.addEventListener('click', () => {
     //can't remove the selection, might need to use checkbox
     // document.getElementsByName('read').checked = false;
 
-    library.appendChild(createButton('book1'));
+    library.appendChild(createButton(title));
+    //testing as a conditional
+    bookName = title;
     formContainer.classList.remove('show');
     console.log(myLibrary);
 });
@@ -106,10 +109,15 @@ library.addEventListener('click', function(e) {
         const title = document.getElementById('book-title');
         const author = document.getElementById('book-author');
         const pages = document.getElementById('book-pages');
-        const read = document.getElementsByName('result');
-        title.textContent = `Title: ${myLibrary[0].title}`;
-        author.textContent = `Author: ${myLibrary[0].author}`;
-        pages.textContent = `Page Count: ${myLibrary[0].pages}`;
+
+
+        myLibrary.forEach((obj) => {
+            if (obj.title === e.target.id) {
+                title.textContent = obj.title;
+                author.textContent = obj.author;
+                pages.textContent = obj.pages;
+            }
+        })
         bookContainer.classList.add('show');
     }
 })

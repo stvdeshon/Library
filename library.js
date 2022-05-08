@@ -3,8 +3,6 @@
 const addBook = document.querySelector("#new");
 //submits user input
 const submit = document.querySelector('#submit');
-//opens book entries
-const openBook = document.querySelectorAll(".books");
 //closes opened modals
 const closeModal = document.querySelectorAll(".close");
 //deletes selected books (currently testing with this to see if id works rather than class on book objects)
@@ -23,8 +21,6 @@ addBook.addEventListener('click', () => {
     formContainer.classList.add('show');
 });
 
-
-
 closeModal.forEach((modal) => {
     modal.addEventListener('click', () => {
         formContainer.classList.remove('show');
@@ -35,24 +31,14 @@ closeModal.forEach((modal) => {
     })
 });
 
-//parameter is filler, need to find how to feed specific index later
-removeBook.addEventListener('click', (index) => {
-    deleteBook(index);
-    bookContainer.classList.remove('show');
-});
-
 let myLibrary = [];
 
-
-constructor
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
 }
-
-let bookName;
 
 
 //submits user info to constructBook function
@@ -91,17 +77,11 @@ submit.addEventListener('click', () => {
     console.log(myLibrary);
 });
 
-//constructs book, adds to array, will have to connect user input from form
+//constructs book, adds to array
 function constructBook(title, author, pages, read) {
     let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
     return newBook;
-}
-
-//deletes selected book from array, may have to add ui deletion later
-function deleteBook(index) {
-    myLibrary.splice(index, 1);
-    return myLibrary;
 }
 
 library.addEventListener('click', function(e) {
@@ -109,7 +89,7 @@ library.addEventListener('click', function(e) {
         const title = document.getElementById('book-title');
         const author = document.getElementById('book-author');
         const pages = document.getElementById('book-pages');
-
+        //add read toggle here
 
         myLibrary.forEach((obj) => {
             if (obj.title === e.target.id) {
@@ -123,4 +103,23 @@ library.addEventListener('click', function(e) {
 })
 
 
+//delete funtionality must delete book from mylibrary andn the corresponding button
 
+
+//so far can remove button, must next get it to splice array
+removeBook.addEventListener('click', () => {
+    const title = document.getElementById('book-title');
+    const btn = document.querySelectorAll('.books');
+    btn.forEach((book) => {
+        if (book.textContent === title.textContent) {
+            book.remove();
+        }
+    })
+    
+    bookContainer.classList.remove('show');
+});
+
+function deleteBook(index) {
+    myLibrary.splice(index, 1);
+    return myLibrary;
+}

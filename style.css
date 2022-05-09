@@ -125,8 +125,12 @@ main {
 
 #library {
     border: 1px solid black;
-    height: max(500px, 50%);
+    height: 100%;
     display: flex;
     justify-content: start;
     gap: 1px;
+}
+
+.books {
+    height: 200px;
 }

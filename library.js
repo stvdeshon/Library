@@ -15,6 +15,11 @@ const bookContainer = document.querySelector("#book-container");
 const formModal = document.querySelector("#form-modal");
 const bookModal = document.querySelector("#book-modal");
 
+//radio buttons
+const yes = document.querySelector('#yes');
+const no = document.querySelector('#no');
+const radioResult = document.querySelector('#radio-result');
+
 //modal toggles
 addBook.addEventListener('click', () => {
     formContainer.classList.add('show');
@@ -27,50 +32,71 @@ closeModal.forEach((modal) => {
         document.getElementById('title').value = '';
         document.getElementById('author').value = '';
         document.getElementById('pages').value = '';
-    })
+    });
 });
 
 let myLibrary = [];
 
+//user toggle for reading the book
+let radioVal;
+let radioBool = false;
+
 function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
+    this.title = `Title: ${title}`;
+    this.author = `Author: ${author}`;
+    this.pages = `Page Count: ${pages}`;
     this.read = read;
 }
 
+//this toggles the user's read status for the individual books both in the UI and the array
+radioResult.addEventListener('click', () => {
+    const title = document.getElementById('book-title');
+    myLibrary.forEach((obj) => {
+    if (radioBool === true && obj.title === title.textContent) {
+        radioVal = 'I haven\'t read the book';
+        obj.read = radioVal;
+        radioBool = false
+        console.log(myLibrary);
+        return radioResult.textContent = radioVal;
+    } else if (radioBool === false && obj.title === title.textContent) {
+        radioVal = 'I have read the book';
+        obj.read = radioVal;
+        radioBool = true;
+        console.log(myLibrary);
+        return radioResult.textContent = radioVal;
+    }
+    });
+})
 
 //submits user info to constructBook function
 submit.addEventListener('click', () => {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
-    const read = document.getElementsByName('read');
-    let radioVal;
+    //the next variable allows for the formatted string to work
+    const formattedTitle = `Title: ${title}`;
 
-    for(i = 0; i < read.length; i++) {
-        if(read[i].checked)
-        radioVal = read[i].value;
-    }
+    //the following give the radio button values to the modal
+    if (yes.checked) radioBool = true;
+    if (yes.checked) radioVal = 'I have read the book';
+    if (no.checked) radioBool = false;
+    if (no.checked) radioVal = 'I haven\'t read the book';
 
     function createButton(index) {
         let btn = document.createElement('button');
         btn.classList.add('books');
-        btn.setAttribute('id', title);
+        btn.setAttribute('id', formattedTitle);
         btn.textContent = index;
         return btn;
     }
-
     
     constructBook(title, author, pages, radioVal);
     document.getElementById('title').value = '';
     document.getElementById('author').value = '';
     document.getElementById('pages').value = '';
-    //can't remove the selection, might need to use checkbox
-    // document.getElementsByName('read').checked = false;
+    no.checked = true;
 
     library.appendChild(createButton(title));
-    bookName = title;
     formContainer.classList.remove('show');
     console.log(myLibrary);
 });
@@ -87,13 +113,14 @@ library.addEventListener('click', function(e) {
         const title = document.getElementById('book-title');
         const author = document.getElementById('book-author');
         const pages = document.getElementById('book-pages');
-        //add read toggle here
+        const radio = document.getElementById('radio-result');
 
         myLibrary.forEach((obj) => {
             if (obj.title === e.target.id) {
                 title.textContent = obj.title;
                 author.textContent = obj.author;
                 pages.textContent = obj.pages;
+                radio.textContent = obj.read;
             }
         })
         bookContainer.classList.add('show');
@@ -105,7 +132,7 @@ removeBook.addEventListener('click', () => {
     const title = document.getElementById('book-title');
     const btn = document.querySelectorAll('.books');
     btn.forEach((book) => {
-        if (book.textContent === title.textContent) {
+        if (book.id === title.textContent) {
             book.remove();
         }
     })

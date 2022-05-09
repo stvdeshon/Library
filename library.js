@@ -1,4 +1,3 @@
-
 //opens modal to add new books
 const addBook = document.querySelector("#new");
 //submits user input
@@ -71,7 +70,6 @@ submit.addEventListener('click', () => {
     // document.getElementsByName('read').checked = false;
 
     library.appendChild(createButton(title));
-    //testing as a conditional
     bookName = title;
     formContainer.classList.remove('show');
     console.log(myLibrary);
@@ -102,11 +100,7 @@ library.addEventListener('click', function(e) {
     }
 })
 
-
-//delete funtionality must delete book from mylibrary andn the corresponding button
-
-
-//so far can remove button, must next get it to splice array
+//this event handler deletes the UI element and the corresponding object from the array
 removeBook.addEventListener('click', () => {
     const title = document.getElementById('book-title');
     const btn = document.querySelectorAll('.books');
@@ -115,11 +109,20 @@ removeBook.addEventListener('click', () => {
             book.remove();
         }
     })
-    
+    myLibrary.forEach((obj) => {
+        if (obj.title === title.textContent) {
+            
+            myLibrary.splice(deleteBook(), 1);
+        }
+    })
+    console.log(myLibrary);
     bookContainer.classList.remove('show');
 });
 
-function deleteBook(index) {
-    myLibrary.splice(index, 1);
-    return myLibrary;
+
+function deleteBook() {
+    const title = document.getElementById('book-title');
+    const index = myLibrary.findIndex(obj => obj.title === title.textContent);
+
+    return index
 }

@@ -75,7 +75,8 @@ submit.addEventListener('click', () => {
     const pages = document.getElementById('pages').value;
     //the next variable allows for the formatted string to work
     const formattedTitle = `Title: ${title}`;
-
+    
+    
     //the following give the radio button values to the modal
     if (yes.checked) radioBool = true;
     if (yes.checked) radioVal = 'I have read the book';
@@ -83,13 +84,18 @@ submit.addEventListener('click', () => {
     if (no.checked) radioVal = 'I haven\'t read the book';
 
     function createButton(index) {
-        let btn = document.createElement('button');
+        const btn = document.createElement('button');
         btn.classList.add('books');
         btn.setAttribute('id', formattedTitle);
         btn.textContent = index;
+        const bookIcons = ["url('images/book01.png')", "url('images/book02.png')", "url('images/book03.png')"];
+        const randomNum = Math.floor(Math.random() * bookIcons.length);
+        btn.style.backgroundImage = bookIcons[randomNum];
+        btn.style.backgroundSize = 'cover';
+        btn.style.width = '100px'
         return btn;
     }
-    
+
     constructBook(title, author, pages, radioVal);
     document.getElementById('title').value = '';
     document.getElementById('author').value = '';
@@ -97,9 +103,13 @@ submit.addEventListener('click', () => {
     no.checked = true;
 
     library.appendChild(createButton(title));
+
     formContainer.classList.remove('show');
     console.log(myLibrary);
 });
+
+
+
 
 //constructs book, adds to array
 function constructBook(title, author, pages, read) {

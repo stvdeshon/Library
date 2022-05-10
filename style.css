@@ -124,13 +124,21 @@ main {
 }
 
 #library {
-    border: 1px solid black;
+    margin: 5px;
     height: 100%;
     display: flex;
     justify-content: start;
+    align-content: flex-start;
+    flex-wrap: wrap;
     gap: 1px;
+
 }
 
 .books {
-    height: 200px;
+    height: 265px;
+    max-width: 100px;
+    overflow-wrap: break-word;
+    font-family: Roboto;
+    color:antiquewhite;
+    font-size: 1.3rem;
 }

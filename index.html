@@ -16,33 +16,35 @@
     <main>
         <div id="form-container">
             <div id="form-modal">
-                <label>
-                    <p>Title:</p>
-                    <input type="text" name="title" id="title">
-                </label>
-                <br>
-                <label>
-                    <p>Author:</p>
-                    <input type="text" name="author" id="author">
-                </label>
-                <br>
-                <label>
-                    <p># of Pages:</p>
-                    <input type="number" name="pages" id="pages">
-                </label>
-                <br>
-                    <p>Have you finished the book?</p>
-                <div id="finished">
+                    <form action="#" id="add-book">
                     <label>
-                        <input type="radio" name="read" id="yes" value="Yes">Yes</input>
+                        <p>Title:</p>
+                        <input type="text" name="title" id="title" minlength="1" maxlength="36" required>
                     </label>
+                    <br>
                     <label>
-                        <input type="radio" name="read" id="no" value="No" checked>No</input>
+                        <p>Author:</p>
+                        <input type="text" name="author" id="author" required>
                     </label>
-                </div>
+                    <br>
+                    <label>
+                        <p># of Pages:</p>
+                        <input type="number" name="pages" id="pages" required>
+                    </label>
+                    <br>
+                        <p>Have you finished the book?</p>
+                    <div id="finished">
+                        <label>
+                            <input type="radio" name="read" id="yes" value="Yes">Yes</input>
+                        </label>
+                        <label>
+                            <input type="radio" name="read" id="no" value="No" checked>No</input>
+                        </label>
+                    </div>
+                </form>
                 <br>
                 <div id="closer">
-                    <button id="submit">Submit</button>
+                    <button form="add-book" id="submit" disabled>Submit</button>
                     <button class="close">close</button>
                 </div>
             </div>

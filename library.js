@@ -66,7 +66,15 @@ radioResult.addEventListener('click', () => {
         return radioResult.textContent = radioVal;
     }
     });
+    if (radioResult.textContent !== 'I have read the book') radioResult.style.backgroundColor = 'red';
+    if (radioResult.textContent === 'I have read the book') radioResult.style.backgroundColor = 'green';
 })
+
+const form = document.querySelector('#add-book');
+
+form.addEventListener("change", () => {
+    submit.disabled = !form.checkValidity()
+});
 
 //submits user info to constructBook function
 submit.addEventListener('click', () => {
@@ -76,12 +84,12 @@ submit.addEventListener('click', () => {
     //the next variable allows for the formatted string to work
     const formattedTitle = `Title: ${title}`;
     
-    
     //the following give the radio button values to the modal
     if (yes.checked) radioBool = true;
     if (yes.checked) radioVal = 'I have read the book';
     if (no.checked) radioBool = false;
     if (no.checked) radioVal = 'I haven\'t read the book';
+
 
     function createButton(index) {
         const btn = document.createElement('button');
@@ -101,13 +109,13 @@ submit.addEventListener('click', () => {
     document.getElementById('author').value = '';
     document.getElementById('pages').value = '';
     no.checked = true;
-
+    
     library.appendChild(createButton(title));
-
+    
     formContainer.classList.remove('show');
-    console.log(myLibrary);
-});
+    submit.disabled = true;
 
+});
 
 
 
@@ -133,6 +141,8 @@ library.addEventListener('click', function(e) {
                 radio.textContent = obj.read;
             }
         })
+        if (radioResult.textContent !== 'I have read the book') radioResult.style.backgroundColor = 'red';
+        if (radioResult.textContent === 'I have read the book') radioResult.style.backgroundColor = 'green';
         bookContainer.classList.add('show');
     }
 })

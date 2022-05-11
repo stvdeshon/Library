@@ -38,9 +38,13 @@ header {
 
 /* buttons */
 
-#new, #submit, #remove, .books, .close {
+#new, #submit, #remove, #radio-result, .books, .close {
     padding: 6px 10px;
     border-radius: 5px;
+}
+
+#radio-result {
+    background-color: red;   
 }
 
 /* Modals */
@@ -98,6 +102,7 @@ header {
     max-width: 100%;
     padding: 20px 40px;
     border-radius: 5px;
+    padding: 20px;
 }
 
 .book-modal > div {
